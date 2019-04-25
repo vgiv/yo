@@ -56,7 +56,7 @@ end;
 
 procedure TAboutForm.lURLDblClick(Sender: TObject);
 begin
-  ExecuteFile('http://'+MyHostName+'/yo/yo.html','','',SW_NORMAL);
+  ExecuteFile(HelpURL,'','',SW_NORMAL);
 end;
 
 end.

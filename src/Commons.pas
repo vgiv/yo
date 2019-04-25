@@ -6,7 +6,7 @@ uses
   SysUtils;
 
 Const
-  YoVersion = '0.98 (light)';
+  YoVersion = '0.981 (light)';
   // Имена файлов
   IniFileName0 = 'yo.ini';  //файл инициализации
   RELogName0 = 'regexpr.log';
@@ -14,7 +14,7 @@ Const
   DicREShortFileName0 = 'yo_regexpr.dat';
   MorphsShortFileName0 = 'morphs.dat';
 //
-  MyHostName = 'vgiv.narod.ru';
+  HelpURL = 'http://github.com/vgiv/yo';
 
 Var
   DicVersion, DicREVersion: string;

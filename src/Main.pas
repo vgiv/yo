@@ -177,7 +177,6 @@ type
     odDic: TOpenDialog;
     OpenDic1: TMenuItem;
     OpenRegExprDic1: TMenuItem;
-    Copytodicedit1: TMenuItem;
     RemoveMarked1: TMenuItem;
     Clearusersel1: TMenuItem;
     Clearfilelist1: TMenuItem;
@@ -228,8 +227,7 @@ type
     procedure EditorKeyPress(Sender: TObject; var Key: Char);
     procedure Undo1Click(Sender: TObject);
     procedure OpenDic1Click(Sender: TObject);
-    procedure OpenRegExprDic1Click(Sender: TObject); //for EditDic
-    procedure Copytodicedit1Click(Sender: TObject);
+    procedure OpenRegExprDic1Click(Sender: TObject);
     procedure EditorSelectionChange(Sender: TObject);
     procedure Clearusersel1Click(Sender: TObject);
     procedure Clearfilelist1Click(Sender: TObject);
@@ -2818,13 +2816,14 @@ begin
     Left := Self.Left + (Self.Width-AboutForm.Width) div 2;
     Top := Self.Top + (Self.Height-AboutForm.Height) div 2;
     lCopyleft.Caption := Format( '© Владимир Иванов, 2003-%d', [Year] );
+    lURL.Caption := 'URL: ' + HelpURL;
     ShowModal;
   end;
 end;
 
 procedure TMainForm.Moreabout1Click(Sender: TObject);
 begin
-  ShellExecute(Handle,'open','http://'+MyHostName+'/yo/yo.html',nil,nil,SW_SHOWNORMAL);
+  ShellExecute(Handle,'open',HelpURL,nil,nil,SW_SHOWNORMAL);
 end;
 
 procedure TMainForm.Close1Click(Sender: TObject);
@@ -2948,11 +2947,6 @@ begin
   StatusBar1.Hint := StatusBarHint;
 //
   Application.OnIdle := LoadAll;
-end;
-
-procedure TMainForm.Copytodicedit1Click(Sender: TObject);
-begin
-  CopyToDicEdit( Editor.SelWideText );
 end;
 
 procedure TMainForm.SetMenuItem( ItemName: string; v: boolean );
@@ -3321,7 +3315,6 @@ begin
     MainForm.Edit1.Enabled := True;
     for i := 0 to MainForm.Edit1.Count-1 do
       MainForm.Edit1.Items[i].Enabled := False;
-    MainForm.CopyToDicEdit1.Enabled := True;
   end
   else
   begin
