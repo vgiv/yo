@@ -2096,7 +2096,7 @@ begin
   Result := True;
   if Editor.LineCount=0 then
     Exit;
-  if Edited then
+  if Edited and not YoOptions.ToConfirmClose then
     case WarningX( msgToSave, 1 ) of
       IDYES: if TextFileName<>'' then
           SaveFile
@@ -2159,6 +2159,7 @@ begin
     AutoUnicode := ReadBool( 'Yo', 'AutoUnicode', True );
     RegExprs := ReadBool( 'Yo', 'RegExprs', True );
     LastFile := ReadBool( 'Yo', 'RecallLastFile', True );
+    ToConfirmClose := ReadBool( 'Yo', 'ToConfirmClose', False );
     ToConfirmAbbr := ReadBool( 'Yo', 'ToConfirmAbbr', True );
     ToConfirmEllipsis := ReadBool( 'Yo', 'ToConfirmEllipsis', True );
     ToConfirmCap := ReadBool( 'Yo', 'ToConfirmCap', False );
@@ -2296,6 +2297,7 @@ begin
     WriteString( 'Yo', 'Dictionary', DicFileName );
     WriteString( 'Yo', 'RegExprDictionary', RegExprDicFileName );
     WriteBool( 'Yo', 'RecallLastFile', LastFile );
+    WriteBool( 'Yo', 'ToConfirmClose', ToConfirmClose );
     WriteBool( 'Yo', 'ToConfirmAbbr', ToConfirmAbbr );
     WriteBool( 'Yo', 'ToConfirmEllipsis', ToConfirmEllipsis );
     WriteBool( 'Yo', 'ToConfirmCap', ToConfirmCap );

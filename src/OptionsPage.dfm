@@ -1,6 +1,6 @@
 object OptionsForm: TOptionsForm
-  Left = 341
-  Top = 147
+  Left = 607
+  Top = 180
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = #1054#1087#1094#1080#1080
@@ -140,20 +140,20 @@ object OptionsForm: TOptionsForm
       ImageIndex = 1
       object cbMark: TCheckBox
         Left = 8
-        Top = 78
+        Top = 100
         Width = 300
         Height = 17
         Caption = #1055#1086#1084#1077#1095#1072#1090#1100' '#1080#1089#1087#1088#1072#1074#1083#1077#1085#1085#1086#1077
-        TabOrder = 3
+        TabOrder = 4
         OnClick = cbClick
       end
       object cbWordWrap: TCheckBox
         Left = 8
-        Top = 56
+        Top = 78
         Width = 300
         Height = 17
         Caption = #1047#1072#1074#1086#1088#1072#1095#1080#1074#1072#1090#1100' '#1090#1077#1082#1089#1090' ("Word wrap")'
-        TabOrder = 2
+        TabOrder = 3
         OnClick = cbClick
       end
       object cbLastFile: TCheckBox
@@ -170,12 +170,12 @@ object OptionsForm: TOptionsForm
         Width = 45
         Height = 21
         Caption = #1064#1088#1080#1092#1090
-        TabOrder = 7
+        TabOrder = 8
         OnClick = bFontClick
       end
       object SampleEditor: TRichEdit
         Left = 16
-        Top = 113
+        Top = 135
         Width = 321
         Height = 72
         TabStop = False
@@ -184,41 +184,49 @@ object OptionsForm: TOptionsForm
           'The quick brown fox jumps over the lazy dog.')
         PlainText = True
         ReadOnly = True
-        TabOrder = 6
+        TabOrder = 7
       end
       object bMark: TButton
         Left = 169
-        Top = 75
+        Top = 97
         Width = 45
         Height = 21
         Caption = #1062#1074#1077#1090
-        TabOrder = 4
+        TabOrder = 5
         OnClick = bMarkClick
       end
       object bBackMark: TButton
         Left = 221
-        Top = 75
+        Top = 97
         Width = 45
         Height = 21
         Caption = #1060#1086#1085
-        TabOrder = 5
+        TabOrder = 6
         OnClick = bBackMarkClick
       end
       object cbAutoUnicode: TCheckBox
         Left = 8
-        Top = 34
+        Top = 56
         Width = 300
         Height = 17
         Caption = #1040#1074#1090#1086#1088#1072#1089#1087#1086#1079#1085#1072#1074#1072#1090#1100' '#1092#1086#1088#1084#1072#1090' Unicode'
-        TabOrder = 1
+        TabOrder = 2
       end
       object cbShowToolbar: TCheckBox
         Left = 8
-        Top = 192
+        Top = 214
         Width = 300
         Height = 17
         Caption = #1055#1086#1082#1072#1079#1099#1074#1072#1090#1100' '#1087#1072#1085#1077#1083#1100' '#1080#1085#1089#1090#1088#1091#1084#1077#1085#1090#1086#1074
-        TabOrder = 8
+        TabOrder = 9
+      end
+      object cbToConfirmClose: TCheckBox
+        Left = 8
+        Top = 35
+        Width = 226
+        Height = 17
+        Caption = #1053#1077' '#1087#1086#1076#1090#1074#1077#1088#1078#1076#1072#1090#1100' '#1079#1072#1082#1088#1099#1090#1080#1077' '#1087#1088#1086#1075#1088#1072#1084#1084#1099
+        TabOrder = 1
       end
     end
   end

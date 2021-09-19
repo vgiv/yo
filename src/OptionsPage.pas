@@ -21,6 +21,7 @@ type
     Mark: boolean;
     WordWrap: boolean;
     LastFile: boolean;
+    ToConfirmClose: boolean;
     FBFormat: boolean;
     AutoUnicode: boolean;
     LinesBelow: integer;
@@ -67,6 +68,7 @@ type
     bOKSave: TButton;
     MainMenu1: TMainMenu;
     cbShowToolbar: TCheckBox;
+    cbToConfirmClose: TCheckBox;
     procedure bOKClick(Sender: TObject);
     procedure bCancelClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -154,6 +156,7 @@ begin
     WordWrap := cbWordWrap.Checked;
 //    ToConfirm := cbToConfirm.Checked;
     LastFile := cbLastFile.Checked;
+    ToConfirmClose := cbToConfirmClose.Checked;
     FBFormat := cbFBFormat.Checked;
     AutoUnicode := cbAutoUnicode.Checked;
     try
@@ -200,6 +203,7 @@ begin
     cbWordWrap.Checked := WordWrap;
 //    cbToConfirm.Checked := ToConfirm;
     cbLastFile.Checked := LastFile;
+    cbToConfirmClose.Checked := ToConfirmClose;
     cbFBFormat.Checked := FBFormat;
     cbAutoUnicode.Checked := AutoUnicode;
     eLinesBelow.Text := Format( '%d', [LinesBelow] );
