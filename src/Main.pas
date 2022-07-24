@@ -12,7 +12,7 @@ uses
   IdTCPClient, IdHTTP, ToolWin, ImgList, StdActns, ActnList, CommCtrl;
 
 Const
-  Year = 2019;
+  Year = 2022;
   // Цвета
   clDicMark = clRed; // цвет выделения в РС
   clEditorWindow: TColor = clWhite;
@@ -2305,6 +2305,7 @@ begin
     DeleteKey( 'Yo', 'LastFilePos' );
     WriteString( 'Yo', 'TextDirectory', TextDirectory );
     WriteString( 'Yo', 'ButtonHotKeys', ButtonHotKeys );
+    WriteInteger( 'Yo', 'LinesBelow', LinesBelow );
 //  Colors
     WriteInteger( 'Colors', 'ColorMark', clMark );
     WriteInteger( 'Colors', 'ColorBackMark', clBackMark );
