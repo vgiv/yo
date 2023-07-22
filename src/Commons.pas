@@ -6,7 +6,7 @@ uses
   SysUtils;
 
 Const
-  YoVersion = '0.983 (light)';
+  YoVersion = '0.9831 (light)';
   // Имена файлов
   IniFileName0 = 'yo.ini';  //файл инициализации
   RELogName0 = 'regexpr.log';
