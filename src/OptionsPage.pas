@@ -1,5 +1,8 @@
 unit OptionsPage;
 
+// ћеткой HideRichEditBug помечен
+// костыль дл€ максировки возможной EReadError
+
 interface
 
 uses
@@ -100,40 +103,50 @@ procedure TOptionsForm.SetSelBgColor(AColor: TColor);
 var
   Format: TCharFormat2;
 begin
-  FillChar(Format, SizeOf(Format), 0);
-  with Format do
-  begin
-    cbSize := SizeOf(Format);
-    dwMask := CFM_BACKCOLOR;
-    crBackColor := AColor;
-    SampleEditor.Perform(EM_SETCHARFORMAT, SCF_SELECTION, Longint(@Format));
+  try // HideRichEditBug
+    FillChar(Format, SizeOf(Format), 0);
+    with Format do
+    begin
+      cbSize := SizeOf(Format);
+      dwMask := CFM_BACKCOLOR;
+      crBackColor := AColor;
+      SampleEditor.Perform(EM_SETCHARFORMAT, SCF_SELECTION, Longint(@Format));
+    end;
+  except
+    on E: EReadError do
+      SampleEditor.Text := 'EReadError 1'
   end;
 end;
 
 procedure TOptionsForm.ShowEditor;
 begin
-  with NewYoOptions, SampleEditor do
-  begin
-    SelectAll;
-    with SampleEditor.Font do
+  try // HideRichEditBug
+    with NewYoOptions, SampleEditor do
     begin
-      SelAttributes.Name := NewYoOptions.EditorFontName;
-      SelAttributes.Size := NewYoOptions.EditorFontSize;
-      SelAttributes.Charset := NewYoOptions.EditorFontCharset;
-    end;
-    SelStart := 5;
-    SelLength := 1;
-    if cbMark.Checked then
-    begin
-      SelAttributes.Color := clMark;
-      SetSelBgColor(clBackMark);
-    end else
-    begin
-      SelAttributes.Color := SampleEditor.Font.Color;
-      SetSelBgColor(clEditorWindow);
-    end;
-    SelStart := 0;
-    SelLength := 0;
+      SelectAll;
+      with SampleEditor.Font do
+      begin
+        SelAttributes.Name := NewYoOptions.EditorFontName;
+        SelAttributes.Size := NewYoOptions.EditorFontSize;
+        SelAttributes.Charset := NewYoOptions.EditorFontCharset;
+      end;
+      SelStart := 5;
+      SelLength := 1;
+      if cbMark.Checked then
+      begin
+        SelAttributes.Color := clMark;
+        SetSelBgColor(clBackMark);
+      end else
+      begin
+        SelAttributes.Color := SampleEditor.Font.Color;
+        SetSelBgColor(clEditorWindow);
+      end;
+      SelStart := 0;
+      SelLength := 0;
+    end
+  except
+    on E: EReadError do
+      SampleEditor.Text := 'EReadError 2'
   end;
 end;
 
@@ -159,7 +172,7 @@ begin
     ToConfirmClose := cbToConfirmClose.Checked;
     FBFormat := cbFBFormat.Checked;
     AutoUnicode := cbAutoUnicode.Checked;
-    try
+    try // HideRichEditBug
       LinesBelow := StrToInt( eLinesBelow.Text );
     except
       Result := False;
@@ -207,9 +220,14 @@ begin
     cbFBFormat.Checked := FBFormat;
     cbAutoUnicode.Checked := AutoUnicode;
     eLinesBelow.Text := Format( '%d', [LinesBelow] );
-    SampleEditor.Font.Name := EditorFontName;
-    SampleEditor.Font.Size := EditorFontSize;
-    SampleEditor.Font.Charset := EditorFontCharset;
+    try // HideRichEditBug
+      SampleEditor.Font.Name := EditorFontName;
+      SampleEditor.Font.Size := EditorFontSize;
+      SampleEditor.Font.Charset := EditorFontCharset;
+    except
+      on E: EReadError do
+        SampleEditor.Text := 'EReadError 3'
+    end;
     bFont.Enabled := FontEnabled;
     cbRegExprs.Enabled := RegExprsEnabled;
     cbShowToolbar.Checked := ShowToolBar;
@@ -268,7 +286,12 @@ begin
   cbNoVarOnly.Enabled := not cbVarOnly.Checked;
   bMark.Enabled := cbMark.Checked;
   bBackMark.Enabled := cbMark.Checked;
-  SampleEditor.WordWrap := cbWordWrap.Checked;
+  try
+    SampleEditor.WordWrap := cbWordWrap.Checked;
+  except
+    on E: EReadError do
+      SampleEditor.Text := 'EReadError 4'
+  end;
   ShowEditor;
 end;
 
